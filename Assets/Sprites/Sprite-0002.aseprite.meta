@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 711a560260124f945aebd743122b0359
+guid: 23c12decfb0a5e9449b9c7fddb102ff1
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Ball_Frame_0
+  - name: Sprite-0002
     originalName: 
-    pivot: {x: 0.5882353, y: -2.7}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 34
-      height: 10
-    spriteID: 99851c39a81b5534f97c0cfc10f8f9fb
+      width: 32
+      height: 32
+    spriteID: 85ec6fc45e0259348b754a28779b6604
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,94 +139,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Ball_Frame_1
-    originalName: 
-    pivot: {x: 0.5882353, y: -2.7}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 22
-      width: 34
-      height: 10
-    spriteID: 794e04ed10c79d74aab409ce7c1f56ef
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 22}
-  - name: Ball_Frame_2
-    originalName: 
-    pivot: {x: 0.5882353, y: -2.7}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 40
-      width: 34
-      height: 10
-    spriteID: a6768c46e2e88884abf2070d2008dd14
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 40}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -2064264617
-    name: Ball
+    guid: -572920020
+    name: Sprite-0002
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Ball_Frame_0
+    - name: Sprite-0002
       frameIndex: 0
       cellRect:
-        x: 12
-        y: 27
-        width: 34
-        height: 10
-      spriteId: 99851c39a81b5534f97c0cfc10f8f9fb
-    - name: Ball_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 12
-        y: 27
-        width: 34
-        height: 10
-      spriteId: 794e04ed10c79d74aab409ce7c1f56ef
-    - name: Ball_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 12
-        y: 27
-        width: 34
-        height: 10
-      spriteId: a6768c46e2e88884abf2070d2008dd14
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      spriteId: 85ec6fc45e0259348b754a28779b6604
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: Default
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
+  canvasSize: {x: 32, y: 32}

@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float _currentStamina;
     private bool _isGrounded;
     private bool _isSprinting;
+    private PlayerAttack _playerAttack;
 
     [Header("Animation")]
     private Animator _animator;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _currentStamina = maxStamina;
         _animator = GetComponent<Animator>();
+        _playerAttack = GetComponent<PlayerAttack>();
     }
 
     private void Update()
@@ -46,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         float moveSpeed = _isSprinting && _currentStamina > 0 ? speed * sprintStaminaCoeff : speed;
         
-        _rb.linearVelocity = new Vector2(moveInput * moveSpeed, _rb.linearVelocity.y);
+        _rb.velocity = new Vector2(moveInput * moveSpeed, _rb.velocity.y);
 
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded)
         {
-            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
         }
     }
 
@@ -72,12 +74,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (_rb.linearVelocity.x > 0.1f)
+        if (_rb.velocity.x > 0.1f)
         {
+            if(spriteRenderer.flipX)
+                _playerAttack.Flip();
             spriteRenderer.flipX = false;
         }
-        else if (_rb.linearVelocity.x < -0.1f)
+        else if (_rb.velocity.x < -0.1f)
         {
+            if(!spriteRenderer.flipX)
+                _playerAttack.Flip();
             spriteRenderer.flipX = true;
         }
     }
@@ -98,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAnimation()
     {
-        _animator.SetBool("walking", Mathf.Abs(_rb.linearVelocity.x) > 0.25f);
+        _animator.SetBool("walking", Mathf.Abs(_rb.velocity.x) > 0.25f);
         _animator.SetBool("phase", _isSprinting);
     }
 }
