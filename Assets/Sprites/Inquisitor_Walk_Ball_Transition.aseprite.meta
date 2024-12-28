@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 23c12decfb0a5e9449b9c7fddb102ff1
+guid: 6ddfd1dc8802ef8428952353d4951220
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,51 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Sprite-0002
+  - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.70000005, y: 0.036363635}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 46
+      y: 57
+      width: 30
+      height: 55
+    spriteID: 1510970d2e18e5741b427b49cafb6366
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 46, y: 57}
+  - name: Frame_1
+    originalName: 
+    pivot: {x: 0.7058824, y: 0.04}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 57
+      width: 34
+      height: 50
+    spriteID: c2707afa0cf1b284c8790249ce38272c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 57}
+  - name: Frame_2
+    originalName: 
+    pivot: {x: 0.6, y: 0.044444446}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +175,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 32
-      height: 32
-    spriteID: 85ec6fc45e0259348b754a28779b6604
+      width: 45
+      height: 45
+    spriteID: d33a727c286e8e14cb2e442aaa452abc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,29 +186,89 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Frame_3
+    originalName: 
+    pivot: {x: 0.6956522, y: -0.19444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 57
+      y: 4
+      width: 46
+      height: 36
+    spriteID: ececbe7a4f7f413469472e6fc8b02d8f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 57, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -66354468
-    name: Sprite-0002
+    guid: -590416865
+    name: Inquisitor_Walk_Ball_Transition
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sprite-0002
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
+        x: 11
+        y: -2
+        width: 30
+        height: 55
+      spriteId: 1510970d2e18e5741b427b49cafb6366
+    - name: Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 8
+        y: -2
+        width: 34
+        height: 50
+      spriteId: c2707afa0cf1b284c8790249ce38272c
+    - name: Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 5
+        y: -2
+        width: 45
+        height: 45
+      spriteId: d33a727c286e8e14cb2e442aaa452abc
+    - name: Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
         x: 0
-        y: 0
-        width: 32
-        height: 32
-      spriteId: 85ec6fc45e0259348b754a28779b6604
+        y: 7
+        width: 46
+        height: 36
+      spriteId: ececbe7a4f7f413469472e6fc8b02d8f
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: Default
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
-  previousTextureSize: {x: 64, y: 64}
+  canvasSize: {x: 64, y: 64}
+  previousTextureSize: {x: 128, y: 128}

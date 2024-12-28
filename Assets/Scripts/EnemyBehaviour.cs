@@ -42,7 +42,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (hit.collider != null)
         {
             float heightDifference = hoverHeight - hit.distance;
-            _rb.velocity = new Vector2(_rb.velocity.x, Mathf.Lerp(_rb.velocity.y, heightDifference * hoverSpeed, Time.deltaTime));
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, Mathf.Lerp(_rb.linearVelocity.y, heightDifference * hoverSpeed, Time.deltaTime));
         }
     }
 
@@ -61,17 +61,17 @@ public class EnemyBehaviour : MonoBehaviour
 
                 if (distanceToPlayer > targetDistance)
                 {
-                    _rb.velocity = new Vector2(directionToPlayer.x * moveSpeed, _rb.velocity.y);
+                    _rb.linearVelocity = new Vector2(directionToPlayer.x * moveSpeed, _rb.linearVelocity.y);
                 }
                 else
                 {
-                    _rb.velocity = new Vector2(0, _rb.velocity.y);
+                    _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
                 }
             }
         }
         else
         {
-            _rb.velocity = new Vector2(0, _rb.velocity.y);
+            _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
         }
     }
 

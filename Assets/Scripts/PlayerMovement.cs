@@ -48,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         float moveSpeed = _isSprinting && _currentStamina > 0 ? speed * sprintStaminaCoeff : speed;
         
-        _rb.velocity = new Vector2(moveInput * moveSpeed, _rb.velocity.y);
+        _rb.linearVelocity = new Vector2(moveInput * moveSpeed, _rb.linearVelocity.y);
 
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && _isGrounded)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
         }
     }
 
@@ -74,13 +74,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipSprite()
     {
-        if (_rb.velocity.x > 0.1f)
+        if (_rb.linearVelocity.x > 0.1f)
         {
             if(spriteRenderer.flipX)
                 _playerAttack.Flip();
             spriteRenderer.flipX = false;
         }
-        else if (_rb.velocity.x < -0.1f)
+        else if (_rb.linearVelocity.x < -0.1f)
         {
             if(!spriteRenderer.flipX)
                 _playerAttack.Flip();
@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleAnimation()
     {
-        _animator.SetBool("walking", Mathf.Abs(_rb.velocity.x) > 0.25f);
+        _animator.SetBool("walking", Mathf.Abs(_rb.linearVelocity.x) > 0.25f);
         _animator.SetBool("phase", _isSprinting);
     }
 }

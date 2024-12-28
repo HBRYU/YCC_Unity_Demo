@@ -16,7 +16,7 @@ public class BulletBehaviour : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         if (_rb != null)
         {
-            _rb.velocity = initialVelocity; // Set the initial velocity
+            _rb.linearVelocity = initialVelocity; // Set the initial velocity
         }
 
         // Destroy the bullet after its lifetime expires
