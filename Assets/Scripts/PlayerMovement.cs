@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sprint Parameters")]
     public float maxStamina = 100f;
+    private Collider2D _collider;
+    public float sprintSpeedCoeff = 2f;
     public float staminaRefillSpeed = 5f;
     public float sprintStaminaCoeff = 2f;
 
@@ -32,12 +34,14 @@ public class PlayerMovement : MonoBehaviour
         _currentStamina = maxStamina;
         _animator = GetComponent<Animator>();
         _playerAttack = GetComponent<PlayerAttack>();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update()
     {
         HandleMovement();
         HandleSprint();
+        HandleColliderAndGravity();
         FlipSprite();
         CheckGround();
         HandleAnimation();
@@ -45,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        float moveInput = Input.GetAxisRaw("Horizontal");
-        float moveSpeed = _isSprinting && _currentStamina > 0 ? speed * sprintStaminaCoeff : speed;
+        float moveInput = Input.GetAxis("Horizontal");
+        float moveSpeed = _isSprinting && _currentStamina > 0 ? speed * sprintSpeedCoeff : speed;
         
         _rb.linearVelocity = new Vector2(moveInput * moveSpeed, _rb.linearVelocity.y);
 
@@ -58,18 +62,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleSprint()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _currentStamina > 0)
-        {
-            _isSprinting = true;
-            _currentStamina -= Time.deltaTime * 10f;
-            _currentStamina = Mathf.Clamp(_currentStamina, 0, maxStamina);
-        }
-        else
-        {
-            _isSprinting = false;
-            _currentStamina += Time.deltaTime * staminaRefillSpeed;
-            _currentStamina = Mathf.Clamp(_currentStamina, 0, maxStamina);
-        }
+        _isSprinting = Input.GetKey(KeyCode.LeftShift) && _currentStamina > 0;
+        _currentStamina += (_isSprinting ? -sprintStaminaCoeff : staminaRefillSpeed) * Time.deltaTime;
+        _currentStamina = Mathf.Clamp(_currentStamina, 0, maxStamina);
+    }
+
+    private void HandleColliderAndGravity()
+    {
+        _collider.enabled = !_isSprinting;
+        _rb.gravityScale = _isSprinting ? 0f : 2f;
     }
 
     private void FlipSprite()

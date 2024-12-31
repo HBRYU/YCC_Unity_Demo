@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,12 @@ public class PlayerAttack : MonoBehaviour
     public Transform attackPosition;
     public float attackRange = 1f;
     public LayerMask enemyLayer;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -37,7 +44,8 @@ public class PlayerAttack : MonoBehaviour
         // Optional: Display attack graphics
         if (attackGraphics != null)
         {
-            StartCoroutine(ShowAttackGraphics());
+            // StartCoroutine(ShowAttackGraphics());
+            _animator.SetTrigger("Attack");
         }
 
         // Detect enemies within attack range
@@ -73,5 +81,6 @@ public class PlayerAttack : MonoBehaviour
     public void Flip()
     {
         attackPosition.localPosition = new Vector3(-attackPosition.localPosition.x, attackPosition.localPosition.y);
+        attackGraphics.flipX = !attackGraphics.flipX;
     }
 }

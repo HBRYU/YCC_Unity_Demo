@@ -24,8 +24,13 @@ public class PlayerStatus : MonoBehaviour
         health -= damage;
         if (health <= 0f)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    public static void Die()
+    {
+        LevelManager.ReloadCurrentScene();
     }
     
 }

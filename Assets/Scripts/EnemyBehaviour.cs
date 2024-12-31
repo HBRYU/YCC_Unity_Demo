@@ -20,10 +20,14 @@ public class EnemyBehaviour : MonoBehaviour
     public LayerMask groundLayerMask; // For ground detection
 
     private float _reloadTimer;
+    private SpriteRenderer _sr;
+
+    private bool playerDetected; // Tracks player detection status
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _reloadTimer = reloadTime; // Initialize reload timer
     }
@@ -51,23 +55,25 @@ public class EnemyBehaviour : MonoBehaviour
         if (_playerTransform == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, _playerTransform.position);
-        if (distanceToPlayer <= detectRange)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, Mathf.Min(detectRange, Vector3.Distance(transform.position, _playerTransform.position)), wallLayerMask);
+
+        // Player is detected only if within range and no walls block the line of sight
+        playerDetected = distanceToPlayer <= detectRange && (hit.collider == null || hit.collider.CompareTag("Player"));
+
+        if (playerDetected)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, _playerTransform.position - transform.position, detectRange, wallLayerMask);
+            Vector2 directionToPlayer = (_playerTransform.position - transform.position).normalized;
 
-            if (hit.collider == null || hit.collider.CompareTag("Player"))
+            if (distanceToPlayer > targetDistance)
             {
-                Vector2 directionToPlayer = (_playerTransform.position - transform.position).normalized;
-
-                if (distanceToPlayer > targetDistance)
-                {
-                    _rb.linearVelocity = new Vector2(directionToPlayer.x * moveSpeed, _rb.linearVelocity.y);
-                }
-                else
-                {
-                    _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
-                }
+                _rb.linearVelocity = new Vector2(directionToPlayer.x * moveSpeed, _rb.linearVelocity.y);
             }
+            else
+            {
+                _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
+            }
+
+            FacePlayer();
         }
         else
         {
@@ -75,12 +81,20 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void HandleShooting()
+    private void FacePlayer()
     {
         if (_playerTransform == null) return;
 
+        // Flip sprite to face the player
+        _sr.flipX = _playerTransform.position.x < transform.position.x;
+    }
+
+    private void HandleShooting()
+    {
+        if (!playerDetected) return;
+
         _reloadTimer -= Time.deltaTime;
-        if (_reloadTimer <= 0 && Vector2.Distance(transform.position, _playerTransform.position) <= detectRange)
+        if (_reloadTimer <= 0)
         {
             FireBullet();
             _reloadTimer = reloadTime;
